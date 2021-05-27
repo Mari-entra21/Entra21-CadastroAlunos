@@ -49,6 +49,12 @@
 
         //Babi
         function cadastrarAluno() {
+            let notas = []
+            let nome = prompt("Cadastro de Aluno:\nInforme o nome do aluno:")
+            for (let i = 0; i < 3; i++) {
+                notas[i] = +prompt(`Cadastro de Aluno:\nInforme a ${i + 1}ª nota:`)
+            }
+            calcularMedia(notas);
 
         }
 
