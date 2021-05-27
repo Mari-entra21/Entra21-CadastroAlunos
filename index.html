@@ -20,7 +20,6 @@
 
         function menu() {
             while (true) {
-                Interrompe:
                 let indice = +prompt("Escolha um valor para executar o comando:\n\n1) Cadastrar aluno;\n2) Editar informações do aluno;\n3) Cadastrar notas;\n4) Listar alunos;\n0) Sair;")
                 if (indice == 0) {
                     break;
@@ -28,20 +27,20 @@
                     switch (indice) {
                         case 1:
                             cadastrarAluno();
-                            continue Interrompe;
+                            break;
                         case 2:
                             let matricula = prompt("Informe o número da matrícula para editar as informações:")
                             editarInformacoes(matricula);
-                            continue Interrompe;
+                            break;
                         case 3:
                             cadastrarNotas();
-                            continue Interrompe;
+                            break;
                         case 4:
                             listarAlunos();
-                            continue Interrompe;
+                            break;
                         default:
                             alert("Número informado é inválido. Digite outro valor!")
-                            continue Interrompe;
+                            break;
                     }
                 }
             }
@@ -54,8 +53,11 @@
         }
 
         //Yasmin
-        function listarAlunos() {
-
+        function listarAlunos(matriz) {
+            for(let i = 0; i < 4; i++) {
+                for (let j = 0; j < 6; j++) {
+                    if 
+            }
         }
 
         //Vitor
