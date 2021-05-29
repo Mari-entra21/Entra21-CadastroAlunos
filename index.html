@@ -9,6 +9,8 @@
 
 <body>
     <script>
+        "use strict"
+
         let matriz = []
 
         for (let i = 0; i < 4; i++) {
@@ -17,8 +19,18 @@
                 matriz[i][j] = "--"
             }
         }
+        matriz[0][0] = "Matrícula"
+        matriz[0][1] = "Nome do Aluno"
+        matriz[0][2] = "1ª Nota"
+        matriz[0][3] = "2ª Nota"
+        matriz[0][4] = "3ª Nota"
+        matriz[0][5] = "Média"
+
+        menu();
 
         function menu() {
+            let matricula
+            let index = 1
             while (true) {
                 let indice = +prompt("Escolha um valor para executar o comando:\n\n1) Cadastrar aluno;\n2) Editar informações do aluno;\n3) Cadastrar notas;\n4) Listar alunos;\n0) Sair;")
                 if (indice == 0) {
@@ -26,14 +38,16 @@
                 } else {
                     switch (indice) {
                         case 1:
-                            cadastrarAluno();
+                            cadastrarAluno(index);
+                            index++
                             break;
                         case 2:
-                            let matricula = prompt("Informe o número da matrícula para editar as informações:")
+                            matricula = String(prompt("Informe o número da matrícula para editar as informações:"))
                             editarInformacoes(matricula);
                             break;
                         case 3:
-                            cadastrarNotas();
+                            matricula = String(prompt("Informe o número da matrícula para cadastrar as notas:"))
+                            cadastrarNotas(matricula);
                             break;
                         case 4:
                             listarAlunos();
@@ -48,14 +62,22 @@
         }
 
         //Babi
-        function cadastrarAluno() {
-            let notas = []
-            let nome = prompt("Cadastro de Aluno:\nInforme o nome do aluno:")
-            for (let i = 0; i < 3; i++) {
-                notas[i] = +prompt(`Cadastro de Aluno:\nInforme a ${i + 1}ª nota:`)
+        function cadastrarAluno(index) {
+            let matricula = String(prompt("Cadastro de Aluno:\nInforme o número da matrícula:"))
+            if (!isNaN(matricula)) {
+                if (alunoCadastrado(matricula)) {
+                    let resultado = confirm(`Já existe um aluno com a matrícula nº ${matricula}, não é possível inserí-lo novamente.\nDeseja editar as informações do aluno?`)
+                    resultado ? editarInformacoes(matricula) : alert(`Os dados do aluno de matrícula nº ${matricula} serão mantidos.\nClique em OK para voltar para o menu!`)
+                    return;
+                }
+                let nome = String(prompt("Cadastro de Aluno:\nInforme o nome do aluno:"))
+                matriz[index][0] = matricula
+                matriz[index][1] = nome;
+                return;
+            } else {
+                alert("Deve ser informado um número válido para a matrícula.\nDigite outro valor!")
+                cadastrarAluno(index);
             }
-            calcularMedia(notas);
-
         }
 
         //Yasmin
