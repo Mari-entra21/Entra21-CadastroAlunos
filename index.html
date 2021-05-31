@@ -63,7 +63,21 @@
 
         //Babi
         function cadastrarAluno(index) {
-           
+            let matricula = String(prompt("Cadastro de Aluno:\nInforme o número da matrícula:"))
+            if (!isNaN(matricula)) {
+                if (alunoCadastrado(matricula)) {
+                    let resultado = confirm(`Já existe um aluno com a matrícula nº ${matricula}, não é possível inserí-lo novamente.\nDeseja editar as informações do aluno?`)
+                    resultado ? editarInformacoes(matricula) : alert(`Os dados do aluno de matrícula nº ${matricula} serão mantidos.\nClique em OK para voltar para o menu!`)
+                    return;
+                }
+                let nome = String(prompt("Cadastro de Aluno:\nInforme o nome do aluno:"))
+                matriz[index][0] = matricula
+                matriz[index][1] = nome;
+                return;
+            } else {
+                alert("Deve ser informado um número válido para a matrícula.\nDigite outro valor!")
+                cadastrarAluno(index);
+            }
         }
 
         //Yasmin
@@ -73,7 +87,9 @@
 
         //Vitor
         function alunoCadastrado(matricula) {
-           
+            for (let j = 1; j < 4; j++) {
+                matriz[j][0] == matricula ? true : false
+            }
         }
 
         //Maycon
