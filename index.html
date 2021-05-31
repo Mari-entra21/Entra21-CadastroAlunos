@@ -63,7 +63,7 @@
 
         //Babi
         function cadastrarAluno(index) {
-            
+           
         }
 
         //Yasmin
@@ -73,7 +73,7 @@
 
         //Vitor
         function alunoCadastrado(matricula) {
-
+           
         }
 
         //Maycon
@@ -82,12 +82,35 @@
         }
 
         //Maria
-        function cadastrarNotas(index) {
-
+        function cadastrarNotas(matricula) {
+            let posicao
+            if (alunoCadastrado(matricula)) {
+                for (let j = 1; j < 4; j++) {
+                    if (matriz[j][0] == matricula) {
+                        posicao = j
+                    }
+                }
+                let notas = []
+                for (let i = 0; i < 3; i++) {
+                    notas[i] = +prompt(`Informe a ${i + 1}º nota:`)
+                    matriz[posicao][i + 2] = notas[i]
+                }
+                calcularMedia(notas, posicao)
+                return;
+            } else {
+                alert("O Aluno não está cadastrado.\nÉ preciso cadastrar o aluno para informar as notas!")
+                return;
+            }
         }
 
-        function calcularMedia(notas) {
-
+        function calcularMedia(notas, posicao) {
+            let soma = 0
+            for (let i = 0; i < notas.length; i++) {
+                soma += notas[i]
+            }
+            let media = soma / notas.length
+            matriz[posicao][5] = media 
+            return 
         }
     </script>
 </body>
