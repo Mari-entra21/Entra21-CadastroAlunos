@@ -9,6 +9,8 @@
 
 <body>
     <script>
+        "use strict"
+
         let matriz = []
 
         for (let i = 0; i < 4; i++) {
@@ -17,8 +19,18 @@
                 matriz[i][j] = "--"
             }
         }
+        matriz[0][0] = "Matrícula"
+        matriz[0][1] = "Nome do Aluno"
+        matriz[0][2] = "1ª Nota"
+        matriz[0][3] = "2ª Nota"
+        matriz[0][4] = "3ª Nota"
+        matriz[0][5] = "Média"
+
+        menu();
 
         function menu() {
+            let matricula
+            let index = 1
             while (true) {
                 let indice = +prompt("Escolha um valor para executar o comando:\n\n1) Cadastrar aluno;\n2) Editar informações do aluno;\n3) Cadastrar notas;\n4) Listar alunos;\n0) Sair;")
                 if (indice == 0) {
@@ -26,14 +38,16 @@
                 } else {
                     switch (indice) {
                         case 1:
-                            cadastrarAluno();
+                            cadastrarAluno(index);
+                            index++
                             break;
                         case 2:
-                            let matricula = prompt("Informe o número da matrícula para editar as informações:")
+                            matricula = String(prompt("Informe o número da matrícula para editar as informações:"))
                             editarInformacoes(matricula);
                             break;
                         case 3:
-                            cadastrarNotas();
+                            matricula = String(prompt("Informe o número da matrícula para cadastrar as notas:"))
+                            cadastrarNotas(matricula);
                             break;
                         case 4:
                             listarAlunos();
@@ -48,7 +62,7 @@
         }
 
         //Babi
-        function cadastrarAluno() {
+        function cadastrarAluno(index) {
 
         }
 
@@ -59,9 +73,14 @@
 
         //Vitor
         function alunoCadastrado(matricula) {
-            if (matriz[i] == matricula) {
-                alert("Aluno já cadastrado")
-                break;
+            for (let j = 1; j < 4; j++) {
+
+                if (matriz[j][0] == matricula) {
+                   return true
+
+                } else {
+                    return false
+                }
             }
         }
 
@@ -71,7 +90,7 @@
         }
 
         //Maria
-        function cadastrarNotas() {
+        function cadastrarNotas(index) {
 
         }
 
